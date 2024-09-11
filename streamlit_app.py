@@ -24,4 +24,4 @@ with st.expander('Dataset'):
 with st.sidebar:
   st.header('Input Features')
   gender = st.selectbox('Gender',{'Male','Female'})
-  age = st.slider('Age',0,30,100)
+  age = st.slider('Age',0,100,30)
