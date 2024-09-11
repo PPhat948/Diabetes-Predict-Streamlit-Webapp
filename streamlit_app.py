@@ -61,9 +61,7 @@ def clean_text(df):
   gender = pd.get_dummies(df['gender'],drop_first=True)
   smoking_history = pd.get_dummies(df['smoking_history'],drop_first=True)
   df = pd.concat([df,gender,smoking_history],axis=1)
-  df.drop(['gender','smoking_history'],axis=1,inplace=True)
-
-  
+  df.drop(['gender','smoking_history'],axis=1,inplace=True)  
   return df
 
 df_cleaned = clean_text(df)
