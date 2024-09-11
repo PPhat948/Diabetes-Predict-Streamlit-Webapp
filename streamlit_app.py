@@ -89,7 +89,7 @@ model.fit(X_train,y_train)
 predictions = model.predict(X_test)
 
 with st.expander('Model'):
-  input_model = st.selectbox('Model',{'Logistic Regression','KNN','Random Forest'})
+  input_model = st.selectbox('Select Model for Predict',{'Logistic Regression','KNN','Random Forest'})
   st.write('Your model use ',input_model)
   score = model.score(X_train,y_train)
   st.write('Model Score:', score)
