@@ -18,13 +18,6 @@ with st.expander('Dataset'):
   df = pd.read_csv('diabetes_prediction_dataset.csv')
   df
 
-  st.write('**X**')
-  X_raw = df.drop('diabetes',axis=1)
-  X_raw
-
-  st.write('**y**')
-  y_raw = df['diabetes']
-  y_raw
 
 #with st.expander('EDA'):
     
@@ -66,7 +59,9 @@ df = pd.concat([df,gender,smoking_history],axis=1)
 df.drop(['gender','smoking_history'],axis=1,inplace=True)
 
 #Split Data
-X_train, X_test, y_train, y_test = train_test_split(X_raw, y_raw, test_size=0.30, random_state=101)
+X = df.drop('diabetes',axis=1)
+y = df['diabetes']
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.30, random_state=101)
 
 #scaler
 #X_train = scaler.fit_transform(X_train)
