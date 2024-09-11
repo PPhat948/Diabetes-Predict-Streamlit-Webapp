@@ -18,6 +18,8 @@ with st.expander('Dataset'):
   df = pd.read_csv('diabetes_prediction_dataset.csv')
   df
 
+  X_raw = df.drop('diabetes',axis=1)
+  #y_raw = df['diabetes']
 
 #with st.expander('EDA'):
     
@@ -43,14 +45,16 @@ with st.sidebar:
               'blood_glucose_level':blood_glucose_level}
   
   input_df = pd.DataFrame(new_data,index=[0])
-  #merge_df = pd.concat([input_df,X_raw],axis=0)
-  input_df['hypertension'].astype('int')
-  input_df['heart_disease'].astype('int')
+  merge_df = pd.concat([input_df,X_raw],axis=0)
+  #input_df['hypertension'].astype('int')
+  #input_df['heart_disease'].astype('int')
           
               
 with st.expander('Input Features'):
   st.write('**Your input**')
   input_df
+  st.write('**Merge DF**')
+  merge_df
 
 #Data Preprocessing
 #Clean Category Column
@@ -64,11 +68,11 @@ def clean_text(df):
   df.drop(['gender','smoking_history'],axis=1,inplace=True)  
   return df
 
-df_cleaned = clean_text(df)
-input_df_cleaned = clean_text(input_df)
+df_cleaned = clean_text(merge_df)
+#input_df_cleaned = clean_text(input_df)
 #Split Data
-X = df_cleaned.drop('diabetes',axis=1)
-y = df_cleaned['diabetes']
+X = df_cleaned[1:]
+y = df['diabetes']
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.30, random_state=101)
 
 #scaler
