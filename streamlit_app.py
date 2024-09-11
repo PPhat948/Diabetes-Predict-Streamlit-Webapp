@@ -89,7 +89,7 @@ with st.expander('Model'):
   confs = confusion_matrix(y_test,predictions)
   st.write(confs)
   predictions_input = model.predict(input_df)
-  predictions_input
+  st.write(predictions_input)
   
  
   
