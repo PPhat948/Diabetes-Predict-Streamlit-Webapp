@@ -25,3 +25,5 @@ with st.sidebar:
   st.header('Input Features')
   gender = st.selectbox('Gender',{'Male','Female'})
   age = st.slider('Age',0,100,30)
+  hypertension = st.selectbox('Hypertension',{'Yes','No'})
+  heart_disease = st.selectbox('Heart Disease',{'Yes','No'})
