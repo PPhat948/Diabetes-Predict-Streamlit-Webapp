@@ -41,7 +41,7 @@ with st.sidebar:
               'HbA1c_level':HbA1c_level,
               'blood_glucose_level':blood_glucose_level}
   
-  input_df = pd.Dataframe(new_data,index=[0])
+  input_df = pd.DataFrame(new_data,index=[0])
   merge_df = pd.concat([input_df,X_raw],axis=0)
   
           
