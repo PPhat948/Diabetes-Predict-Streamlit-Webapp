@@ -95,3 +95,6 @@ with st.expander('Model Score'):
   st.write('Confusion Matrix')
   confs = confusion_matrix(y_test,predictions)
   st.write(confs)
+  st.write('Classification Report')
+  report = classification_report(y_test,predictions)
+  st.write(report)
