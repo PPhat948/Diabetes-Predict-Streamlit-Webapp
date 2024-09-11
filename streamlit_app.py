@@ -92,4 +92,5 @@ with st.expander('Model Score'):
   st.write('Your model use Logistic Regression')
   score = model.score(X_train,y_train)
   st.write('Model Score:', score)
-  confusion_matrix(y_test,predictions)
+  confs = confusion_matrix(y_test,predictions)
+  st.write(confs)
