@@ -60,8 +60,8 @@ def clean_text(df):
   df.drop(['gender','smoking_history'],axis=1,inplace=True)
   return df
 
-cleaned_df = clean_text(df)
-cleaned_input_df = clean_text(input_df)
+df_cleaned = clean_text(df)
+input_df_cleaned = clean_text(input_df)
 #Split Data
 X = df_cleaned.drop('diabetes',axis=1)
 y = df_cleaned['diabetes']
@@ -92,7 +92,7 @@ with st.expander('Model'):
   st.write('Confusion Matrix')
   confs = confusion_matrix(y_test,predictions)
   st.write(confs)
-  predictions_input = model.predict(cleaned_input_df)
+  predictions_input = model.predict(input_df_cleaned)
   st.write(predictions_input)
   
  
