@@ -53,14 +53,18 @@ with st.expander('Input Features'):
 
 #Data Preprocessing
 #Clean Category Column
-gender = pd.get_dummies(df['gender'],drop_first=True)
-smoking_history = pd.get_dummies(df['smoking_history'],drop_first=True)
-df = pd.concat([df,gender,smoking_history],axis=1)
-df.drop(['gender','smoking_history'],axis=1,inplace=True)
+def clean_text(df):
+  gender = pd.get_dummies(df['gender'],drop_first=True)
+  smoking_history = pd.get_dummies(df['smoking_history'],drop_first=True)
+  df = pd.concat([df,gender,smoking_history],axis=1)
+  df.drop(['gender','smoking_history'],axis=1,inplace=True)
+  return df
 
+cleaned_df = clean_text(df)
+cleaned_input_df = clean_text(input_df)
 #Split Data
-X = df.drop('diabetes',axis=1)
-y = df['diabetes']
+X = df_cleaned.drop('diabetes',axis=1)
+y = df_cleaned['diabetes']
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.30, random_state=101)
 
 #scaler
@@ -88,7 +92,7 @@ with st.expander('Model'):
   st.write('Confusion Matrix')
   confs = confusion_matrix(y_test,predictions)
   st.write(confs)
-  predictions_input = model.predict(input_df)
+  predictions_input = model.predict(cleaned_input_df)
   st.write(predictions_input)
   
  
