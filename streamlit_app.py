@@ -17,3 +17,10 @@ with st.expander('Dataset'):
   st.write('**y**')
   y_raw = df['diabetes']
   y_raw
+
+with st.expander('EDA'):
+    
+
+with st.sidebar:
+  st.header('Input Features')
+  gender = st.selectbox('Gender'.{'Male','Female'})
