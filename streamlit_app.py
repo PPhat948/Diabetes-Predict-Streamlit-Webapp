@@ -92,7 +92,7 @@ with st.expander('Model'):
   st.write('Confusion Matrix')
   confs = confusion_matrix(y_test,predictions)
   st.write(confs)
-  input_df_cleaned
+  #input_df_cleaned
 
   
  
