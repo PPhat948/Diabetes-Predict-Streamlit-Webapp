@@ -59,27 +59,14 @@ with st.expander('Input Features'):
   input_df
 
 #Data Preprocessing
+#Clean Category Column
+gender = pd.get_dummies(df['gender'],drop_first=True)
+smoking_history = pd.get_dummies(df['smoking_history'],drop_first=True)
+df = pd.concat([df,gender,smoking_history],axis=1)
+df.drop(['gender','smoking_history'],axis=1,inplace=True)
+
 #Split Data
 X_train, X_test, y_train, y_test = train_test_split(X_raw, y_raw, test_size=0.30, random_state=101)
-
-#OneHot Encoder
-object_cols = [col for col in X_train.columns if X_train[col].dtype == "object"]
-
-OH_encoder = OneHotEncoder(handle_unknown='ignore', sparse_output=False)
-OH_cols_train = pd.DataFrame(OH_encoder.fit_transform(X_train[object_cols]))
-OH_cols_test = pd.DataFrame(OH_encoder.transform(X_test[object_cols]))
-
-OH_cols_train.index = X_train.index
-OH_cols_test.index = X_test.index
-
-num_X_train = X_train.drop(object_cols, axis=1)
-num_X_test = X_test.drop(object_cols, axis=1)
-
-X_train = pd.concat([num_X_train, OH_cols_train], axis=1)
-X_test = pd.concat([num_X_test, OH_cols_test], axis=1)
-
-X_train.columns = X_train.columns.astype(str)
-X_test.columns = X_test.columns.astype(str)
 
 #scaler
 #X_train = scaler.fit_transform(X_train)
