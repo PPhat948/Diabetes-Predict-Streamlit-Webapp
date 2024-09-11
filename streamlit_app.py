@@ -93,7 +93,7 @@ predictions = model.predict(X_test)
 with st.expander('Model'):
   input_model = st.selectbox('Select Model for Predict',{'Logistic Regression','KNN','Random Forest'})
   st.write('Your model use ',input_model)
-  if(input_model == 'Logistic Regression):
+  if(input_model == 'Logistic Regression'):
      model = LogisticRegression()
   elif(input_model == 'KNN'):
     model = KNeighborsClassifier(n_neighbors=7)
