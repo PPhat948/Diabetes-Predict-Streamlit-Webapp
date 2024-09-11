@@ -80,8 +80,8 @@ X_train.columns = X_train.columns.astype(str)
 X_test.columns = X_test.columns.astype(str)
 
 #scaler
-X_train = scaler.fit_transform(X_train)
-X_test = scaler.transform(X_test)
+#X_train = scaler.fit_transform(X_train)
+#X_test = scaler.transform(X_test)
 
 #Logistic Regression
 model = LogisticRegression()
