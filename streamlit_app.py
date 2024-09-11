@@ -5,6 +5,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
 st.title('Machine Learning App: Diabetes Predict')
@@ -91,6 +93,14 @@ predictions = model.predict(X_test)
 with st.expander('Model'):
   input_model = st.selectbox('Select Model for Predict',{'Logistic Regression','KNN','Random Forest'})
   st.write('Your model use ',input_model)
+  if(input_model == 'Logistic Regression):
+     model = LogisticRegression()
+  elif(input_model == 'KNN'):
+    model = KNeighborsClassifier(n_neighbors=7)
+  else:
+    model = RandomForestClassifier(n_estimators=200,max_depth=10) 
+  model.fit(X_train,y_train)
+  predictions = model.predict(X_test)
   score = model.score(X_train,y_train)
   st.write('Model Score:', score)
   st.write('Confusion Matrix')
