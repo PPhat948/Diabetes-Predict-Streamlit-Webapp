@@ -26,8 +26,8 @@ with st.sidebar:
   st.header('Input Features')
   gender = st.selectbox('Gender',{'Male','Female'})
   age = st.slider('Age',0,100,30)
-  hypertension = st.selectbox('Hypertension',{'Yes','No'})
-  heart_disease = st.selectbox('Heart Disease',{'Yes','No'})
+  hypertension = st.selectbox('Hypertension (1 = Yes, 0 = No)',{'1','0'})
+  heart_disease = st.selectbox('Heart Disease (1 = Yes, 0 = No)',{'1','0'})
   smoking_history = st.selectbox('Smoking History',{'Never','Current','Former'})
   bmi = st.slider('BMI',0.0,50.0,25.0)
   HbA1c_level = st.slider('HbA1c Level',0.0,10.0,5.0)
@@ -44,7 +44,8 @@ with st.sidebar:
   
   input_df = pd.DataFrame(new_data,index=[0])
   #merge_df = pd.concat([input_df,X_raw],axis=0)
-  
+  input_df['hypertension'].astype('int')
+  input_df['heart_disease'].astype('int')
           
               
 with st.expander('Input Features'):
@@ -54,10 +55,15 @@ with st.expander('Input Features'):
 #Data Preprocessing
 #Clean Category Column
 def clean_text(df):
+  df = df.replace(to_replace='not current', value = 'former')
+  df = df.replace(to_replace='ever', value = 'former')
+  
   gender = pd.get_dummies(df['gender'],drop_first=True)
   smoking_history = pd.get_dummies(df['smoking_history'],drop_first=True)
   df = pd.concat([df,gender,smoking_history],axis=1)
   df.drop(['gender','smoking_history'],axis=1,inplace=True)
+
+  
   return df
 
 df_cleaned = clean_text(df)
