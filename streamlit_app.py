@@ -95,6 +95,14 @@ with st.expander('Model Score'):
   st.write('Confusion Matrix')
   confs = confusion_matrix(y_test,predictions)
   st.write(confs)
-  #st.write('Classification Report')
-  #report = classification_report(y_test,predictions)
-  #st.write(report)
+  st.write('Classification Report')
+  cm_dp, rou_dp = plot_metrics(y_pred, y_test)
+  
+  st.subheader('Confusion Matrix')
+  cm_dp.plot()
+  st.pyplot()
+
+  st.subheader('ROC Curve')
+  rou_dp.plot()
+  st.pyplot()
+  
