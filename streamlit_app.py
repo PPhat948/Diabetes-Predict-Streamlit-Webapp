@@ -88,8 +88,9 @@ model = LogisticRegression()
 model.fit(X_train,y_train)
 predictions = model.predict(X_test)
 
-with st.expander('Model Score'):
-  st.write('Your model use Logistic Regression')
+with st.expander('Model'):
+  input_model = st.selectbox('Model',{'Logistic Regression','KNN','Random Forest'})
+  st.write('Your model use ',input_model)
   score = model.score(X_train,y_train)
   st.write('Model Score:', score)
   st.write('Confusion Matrix')
