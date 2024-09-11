@@ -91,5 +91,5 @@ predictions = model.predict(X_test)
 with st.expander('Model Score'):
   st.write('Your model use Logistic Regression')
   score = model.score(X_train,y_train)
-  print(f'Model Score: {score}')
+  st.write('Model Score:', score)
   
