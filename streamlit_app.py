@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import OneHotEncoder
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.neighbors import KNeighborsClassifier
@@ -32,7 +31,7 @@ def get_user_input():
     heart_disease = st.sidebar.selectbox('Heart Disease (1 = Yes, 0 = No)', {'1', '0'})
     smoking_history = st.sidebar.selectbox('Smoking History', {'Never', 'Current', 'Former'})
     bmi = st.sidebar.slider('BMI', 0.0, 50.0, 25.0)
-    HbA1c_level = st.sidebar.slider('HbA1c Level', 0.0, 15.0, 7.5)
+    HbA1c_level = st.sidebar.slider('HbA1c Level', 0.0, 10.0, 5.0)
     blood_glucose_level = st.sidebar.slider('Blood Glucose Level', 50.0, 400.0, 100.0)
     
     user_data = {
@@ -66,16 +65,20 @@ def train_and_predict(X_train, y_train, X_test, input_data, model_choice):
         model = RandomForestClassifier(n_estimators=200, max_depth=10)
 
     model.fit(X_train, y_train)
-    predictions_input = model.predict(input_data)
+    prob_input = model.predict_proba(input_data)[:, 1]  # Get the probability for class 1 (diabetes)
     score = model.score(X_train, y_train)
-    return predictions_input, score
+    return prob_input, score
 
-# Display prediction result
-def display_results(predictions_input):
-    if predictions_input[0] == 0:
-        st.success('You have a low risk of diabetes!')
+# Display prediction result based on custom thresholds
+def display_results(prob_input):
+    prob = prob_input[0]
+    
+    if prob < 0.4:
+        st.success(f'You have Low risk of diabetes (Probability: {prob:.2f})')
+    elif 0.4 <= prob < 0.7:
+        st.warning(f'You have a risk of diabetes. Please consult a doctor. (Probability: {prob:.2f})')
     else:
-        st.warning('You have a high risk of diabetes. Please consult a doctor!')
+        st.error(f'You have high risk of diabetes!! Please consult a doctor. (Probability: {prob:.2f})')
 
 # Main app logic
 def main():
@@ -105,12 +108,11 @@ def main():
             # Split data for training and testing
             X_train, X_test, y_train, y_test, input_data = split_data(df_cleaned, df)
             
-            # Train the model and get predictions
-            with st.spinner('Calculatig please wait..'):
-                predictions_input, model_score = train_and_predict(X_train, y_train, X_test, input_data, model_choice)
+            # Train the model and get prediction probabilities
+            prob_input, model_score = train_and_predict(X_train, y_train, X_test, input_data, model_choice)
             
-            # Display prediction result
-            display_results(predictions_input)
+            # Display prediction result based on probability thresholds
+            display_results(prob_input)
             
             # Display model score
             st.write('Model Score:', model_score)
