@@ -71,6 +71,7 @@ def clean_text(df):
 df_cleaned = clean_text(merge_df)
 #input_df_cleaned = clean_text(input_df)
 #Split Data
+input_row = df_cleaned[:1]
 X = df_cleaned[1:]
 y = df['diabetes']
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.30, random_state=101)
@@ -80,9 +81,10 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.30, random
 #X_test = scaler.transform(X_test)
 
 #Logistic Regression
-model = LogisticRegression()
-model.fit(X_train,y_train)
-predictions = model.predict(X_test)
+#model = LogisticRegression()
+#model.fit(X_train,y_train)
+#predictions = model.predict(X_test)
+
 
 with st.expander('Model'):
   input_model = st.selectbox('Select Model for Predict',{'Logistic Regression','KNN','Random Forest'})
@@ -95,6 +97,8 @@ with st.expander('Model'):
     model = RandomForestClassifier(n_estimators=200,max_depth=10) 
   model.fit(X_train,y_train)
   predictions = model.predict(X_test)
+  predictions_input = model.predict(input_row)
+  st.write(predictions_input)
   score = model.score(X_train,y_train)
   st.write('Model Score:', score)
   st.write('Confusion Matrix')
