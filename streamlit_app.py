@@ -96,9 +96,9 @@ with st.expander('Model'):
   predictions_input = model.predict(input_row)
   predictions_proba = model.predict_proba(input_row)
   
-  if(predictions_proba <= 0.4):
+  if(predictions_proba[1] <= 0.4):
     st.success('You have low risk of diabetes!')
-  elif(predictions_proba <= 0.7):
+  elif(predictions_proba[1] <= 0.7):
     st.warning('You have risk of diabetes please see to doctor!')
   else:
     st.error('You have high risk of diabetes please see to doctor!')
