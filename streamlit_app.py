@@ -32,7 +32,7 @@ def get_user_input():
     heart_disease = st.sidebar.selectbox('Heart Disease (1 = Yes, 0 = No)', {'1', '0'})
     smoking_history = st.sidebar.selectbox('Smoking History', {'Never', 'Current', 'Former'})
     bmi = st.sidebar.slider('BMI', 0.0, 50.0, 25.0)
-    HbA1c_level = st.sidebar.slider('HbA1c Level', 0.0, 15.0, 7.5)
+    HbA1c_level = st.sidebar.slider('HbA1c Level', 0.0, 15.0, 5.5)
     blood_glucose_level = st.sidebar.slider('Blood Glucose Level', 50.0, 400.0, 100.0)
     
     user_data = {
