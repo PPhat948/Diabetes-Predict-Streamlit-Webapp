@@ -80,10 +80,6 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.30, random
 #X_train = scaler.fit_transform(X_train)
 #X_test = scaler.transform(X_test)
 
-#Logistic Regression
-#model = LogisticRegression()
-#model.fit(X_train,y_train)
-#predictions = model.predict(X_test)
 
 
 with st.expander('Model'):
@@ -98,10 +94,14 @@ with st.expander('Model'):
   model.fit(X_train,y_train)
   predictions = model.predict(X_test)
   predictions_input = model.predict(input_row)
-  if(predictions_input == 0):
+  predictions_proba = model.predict_proba(input_row)
+  
+  if(predictions_proba <= 0.4):
     st.success('You have low risk of diabetes!')
-  else:
+  elif(predictions_proba <= 0.7):
     st.warning('You have risk of diabetes please see to doctor!')
+  else:
+    st.error('You have high risk of diabetes please see to doctor!')
   score = model.score(X_train,y_train)
   st.write('Model Score:', score)
   st.write('Confusion Matrix')
