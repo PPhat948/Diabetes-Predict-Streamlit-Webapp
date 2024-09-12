@@ -67,7 +67,7 @@ def split_data(df_cleaned, original_df):
 
 
 # Train and predict 
-def train_and_predict(X_train, y_train, X_test, input_data, model_choice):
+def train_and_predict(X_train, y_train, X_test, y_test, input_data, model_choice):
     if model_choice == 'Logistic Regression':
         model = LogisticRegression()
     elif model_choice == 'KNN':
@@ -76,9 +76,11 @@ def train_and_predict(X_train, y_train, X_test, input_data, model_choice):
         model = RandomForestClassifier(n_estimators=200, max_depth=10)
 
     model.fit(X_train, y_train)
+    predictions = model.predict(X_test)
     prob_input = model.predict_proba(input_data)[:, 1]  # Get the probability for class 1 (diabetes)
     score = model.score(X_train, y_train)
-    return prob_input, score
+    acc = accuracy_score(y_test,predictions)
+    return prob_input, score , acc
 
 # Display prediction result 
 def display_results(prob_input):
@@ -121,11 +123,12 @@ def main():
             
             # Train the model 
             with st.spinner('Calculating... Please wait'):
-                prob_input, model_score = train_and_predict(X_train, y_train, X_test, input_data, model_choice)
+                prob_input, model_score, model_acc = train_and_predict(X_train, y_train, X_test, y_test, input_data, model_choice)
                 # Display prediction result based on probability thresholds
                 display_results(prob_input)
                 # Display model score
                 st.write('Model Score:', model_score)
+                st.write('Model Accuracy:',model_acc)
 
 if __name__ == '__main__':
     main()
