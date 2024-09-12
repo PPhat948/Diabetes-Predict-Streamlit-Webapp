@@ -106,7 +106,9 @@ def main():
             X_train, X_test, y_train, y_test, input_data = split_data(df_cleaned, df)
             
             # Train the model and get predictions
+            with st.spinner('Wait for it...'):
             predictions_input, model_score = train_and_predict(X_train, y_train, X_test, input_data, model_choice)
+            st.success("Done!")
             
             # Display prediction result
             display_results(predictions_input)
