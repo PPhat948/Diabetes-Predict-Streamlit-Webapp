@@ -1,4 +1,4 @@
-# Diabetes Predict Streamlit Webapp
+# Diabetes Prediction Streamlit Webapp
 
 This web app made by using streamlit to predicts the risk of diabetes based on input features.
 
