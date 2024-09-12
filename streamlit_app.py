@@ -107,8 +107,8 @@ with st.expander('Model'):
   if st.button('Predict',type='primary'):
     model()
     with st.spinner('Wait for it...'):
-    time.sleep(5)
-    st.success("Done!")
+      time.sleep(5)
+      st.success("Done!")
     #st.write('Confusion Matrix')
     #confs = confusion_matrix(y_test,predictions)
     #st.dataframe(confs)
