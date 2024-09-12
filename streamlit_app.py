@@ -74,11 +74,11 @@ def display_results(prob_input):
     prob = prob_input[0]
     
     if prob < 0.4:
-        st.success(f'You have Low risk of diabetes (Probability: {prob:.2f})')
+        st.success('You have Low risk of diabetes.')
     elif 0.4 <= prob < 0.7:
-        st.warning(f'You have a risk of diabetes. Please consult a doctor. (Probability: {prob:.2f})')
+        st.warning('You have a risk of diabetes. Please consult a doctor.')
     else:
-        st.error(f'You have high risk of diabetes!! Please consult a doctor. (Probability: {prob:.2f})')
+        st.error('You have high risk of diabetes!! Please consult a doctor.')
 
 # Main app logic
 def main():
