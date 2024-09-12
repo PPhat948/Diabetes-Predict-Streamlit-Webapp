@@ -6,7 +6,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.preprocessing import StandardScaler
-
+from sklearn.metrics import accuracy_score
 # Title and description
 st.title('Machine Learning App: Diabetes Prediction')
 st.info('This web app predicts the risk of diabetes based on input features.')
