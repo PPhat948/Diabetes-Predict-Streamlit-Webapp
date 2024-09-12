@@ -6,7 +6,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.preprocessing import StandardScaler
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, precision_score
 # Title and description
 st.title('Machine Learning App: Diabetes Prediction')
 st.info('This web app predicts the risk of diabetes based on input features.')
@@ -80,7 +80,8 @@ def train_and_predict(X_train, y_train, X_test, y_test, input_data, model_choice
     prob_input = model.predict_proba(input_data)[:, 1]  # Get the probability for class 1 (diabetes)
     score = model.score(X_train, y_train)
     acc = accuracy_score(y_test,predictions)
-    return prob_input, score , acc
+    prec = precision_score(y_test,predictions)
+    return prob_input, score , acc , pred
 
 # Display prediction result 
 def display_results(prob_input):
@@ -123,12 +124,13 @@ def main():
             
             # Train the model 
             with st.spinner('Calculating... Please wait'):
-                prob_input, model_score, model_acc = train_and_predict(X_train, y_train, X_test, y_test, input_data, model_choice)
+                prob_input, model_score, model_acc, model_prec  = train_and_predict(X_train, y_train, X_test, y_test, input_data, model_choice)
                 # Display prediction result based on probability thresholds
                 display_results(prob_input)
                 # Display model score
                 st.write('Model Score:', model_score)
                 st.write('Model Accuracy:',model_acc)
+                st.write('Model Precision:',model_prec
 
 if __name__ == '__main__':
     main()
