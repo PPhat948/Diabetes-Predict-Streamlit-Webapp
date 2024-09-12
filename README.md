@@ -2,7 +2,7 @@
 
 This web app made by using streamlit to predicts the risk of diabetes based on input features.
 
-## Demo App
+## Web App Link
 
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://myapp-u6qfc7bmwsdsdngb7eb6ku.streamlit.app/)
 
@@ -10,9 +10,13 @@ This web app made by using streamlit to predicts the risk of diabetes based on i
 Dataset to train model is from Kaggle: Diabetes prediction dataset:
 https://www.kaggle.com/datasets/iammustafatz/diabetes-prediction-dataset
 
-## Further Reading
+## Pre-requisites
 
-This is filler text, please replace this with a explanatory text about further relevant resources for this repo
-- Resource 1
-- Resource 2
-- Resource 3
+This web app was developed by Python 3.14 with the following packages.
+- streamlit
+- numpy
+- pandas
+- scikit-learn
+
+## Screanshot
+![image](https://github.com/user-attachments/assets/e60ebfc5-5b24-4bfb-b7c0-8d472bbdd0bc)
