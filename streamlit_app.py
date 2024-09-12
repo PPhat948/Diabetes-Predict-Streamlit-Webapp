@@ -49,13 +49,13 @@ def get_user_input():
 
 # Split the data for training and testing
 def split_data(df_cleaned, original_df):
-    X = df_cleaned.iloc[1:, :]
+    X = df_cleaned[1:]
     y = original_df['diabetes']
-    input_data = df_cleaned.iloc[:1, :]
+    input_data = df_cleaned[:1]
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.30, random_state=101)
     return X_train, X_test, y_train, y_test, input_data
 
-# Train and predict based on model selection
+# Train and predict 
 def train_and_predict(X_train, y_train, X_test, input_data, model_choice):
     if model_choice == 'Logistic Regression':
         model = LogisticRegression()
@@ -69,7 +69,7 @@ def train_and_predict(X_train, y_train, X_test, input_data, model_choice):
     score = model.score(X_train, y_train)
     return prob_input, score
 
-# Display prediction result based on custom thresholds
+# Display prediction result 
 def display_results(prob_input):
     prob = prob_input[0]
     
@@ -80,7 +80,7 @@ def display_results(prob_input):
     else:
         st.error('You have high risk of diabetes!! Please consult a doctor.')
 
-# Main app logic
+# Main app 
 def main():
     # Load and display the dataset
     with st.expander('Dataset'):
@@ -108,7 +108,7 @@ def main():
             # Split data for training and testing
             X_train, X_test, y_train, y_test, input_data = split_data(df_cleaned, df)
             
-            # Train the model and get prediction probabilities
+            # Train the model 
             with st.spinner('Calculating... Please wait'):
                 prob_input, model_score = train_and_predict(X_train, y_train, X_test, input_data, model_choice)
                 # Display prediction result based on probability thresholds
