@@ -109,13 +109,12 @@ def main():
             X_train, X_test, y_train, y_test, input_data = split_data(df_cleaned, df)
             
             # Train the model and get prediction probabilities
-            prob_input, model_score = train_and_predict(X_train, y_train, X_test, input_data, model_choice)
-            
-            # Display prediction result based on probability thresholds
-            display_results(prob_input)
-            
-            # Display model score
-            st.write('Model Score:', model_score)
+            with st.spinner('Wait for it...'):
+                prob_input, model_score = train_and_predict(X_train, y_train, X_test, input_data, model_choice)
+                # Display prediction result based on probability thresholds
+                display_results(prob_input)
+                # Display model score
+                st.write('Model Score:', model_score)
 
 if __name__ == '__main__':
     main()
