@@ -99,7 +99,7 @@ with st.expander('Model'):
   st.write('Model Score:', score)
   st.write('Confusion Matrix')
   confs = confusion_matrix(y_test,predictions)
-  st.write(confs)
+  st.dataframe(confs)
 
 
   
