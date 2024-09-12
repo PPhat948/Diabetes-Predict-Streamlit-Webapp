@@ -130,7 +130,7 @@ def main():
                 # Display model score
                 st.write('Model Score:', model_score)
                 st.write('Model Accuracy:',model_acc)
-                st.write('Model Precision:',model_prec
+                st.write('Model Precision:',model_prec)
 
 if __name__ == '__main__':
     main()
