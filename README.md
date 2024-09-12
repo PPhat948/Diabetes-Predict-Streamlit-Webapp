@@ -19,6 +19,7 @@ This web app was developed by Python 3.14 with the following packages.
 - scikit-learn
 
 ## Screanshot
-![image](https://github.com/user-attachments/assets/f82cde0e-d13d-494c-bb7d-d03d2bcea78a)
 ![image](https://github.com/user-attachments/assets/00516140-2893-4885-8464-755cf80c9a66)
+![image](https://github.com/user-attachments/assets/44a455a7-aad0-43da-be92-7b254145491e)
+
 
