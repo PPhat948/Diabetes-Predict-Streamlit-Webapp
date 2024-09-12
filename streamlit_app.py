@@ -98,7 +98,7 @@ with st.expander('Model'):
   model.fit(X_train,y_train)
   predictions = model.predict(X_test)
   predictions_input = model.predict(input_row)
-  if(predictions_input == 1):
+  if(predictions_input == 0):
     st.success('You have low risk of diabetes!')
   else:
     st.warning('You have risk of diabetes please see to doctor!')
