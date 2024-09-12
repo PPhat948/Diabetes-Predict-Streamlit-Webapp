@@ -12,11 +12,11 @@ from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
 
 st.title('Machine Learning App: Diabetes Predict')
-st.info('Hello')
+st.info('This is web app for predict diabetes')
 
 with st.expander('Dataset'):
-  st.write('**Raw Data**')
-  st.write('This Dataset from : https://www.kaggle.com/datasets/iammustafatz/diabetes-prediction-dataset')
+  st.header('**Raw Data**')
+  st.subheader('This Dataset from : https://www.kaggle.com/datasets/iammustafatz/diabetes-prediction-dataset')
   df = pd.read_csv('diabetes_prediction_dataset.csv')
   df
 
@@ -55,8 +55,8 @@ with st.sidebar:
 with st.expander('Input Features'):
   st.write('**Your input**')
   input_df
-  st.write('**Merge DF**')
-  merge_df
+  #st.write('**Merge DF**')
+  #merge_df
 
 #Data Preprocessing
 #Clean Category Column
