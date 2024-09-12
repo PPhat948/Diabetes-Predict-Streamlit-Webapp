@@ -5,6 +5,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.preprocessing import StandardScaler
 
 # Title and description
 st.title('Machine Learning App: Diabetes Prediction')
@@ -49,11 +50,21 @@ def get_user_input():
 
 # Split the data for training and testing
 def split_data(df_cleaned, original_df):
-    X = df_cleaned[1:]
+    X = df_cleaned[1:]  # Exclude the input data
     y = original_df['diabetes']
-    input_data = df_cleaned[:1]
+    input_data = df_cleaned[:1]  # Input data is the first row
+    
+    # Split the dataset
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.30, random_state=101)
+    
+    # Standardize the features
+    scaler = StandardScaler()
+    X_train = scaler.fit_transform(X_train)
+    X_test = scaler.transform(X_test)
+    input_data = scaler.transform(input_data)  # Standardize the input data as well
+    
     return X_train, X_test, y_train, y_test, input_data
+
 
 # Train and predict 
 def train_and_predict(X_train, y_train, X_test, input_data, model_choice):
