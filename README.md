@@ -4,7 +4,7 @@ This web app made by using streamlit to predicts the risk of diabetes based on i
 
 ## Web App Link
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://myapp-u6qfc7bmwsdsdngb7eb6ku.streamlit.app/)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)]([https://myapp-u6qfc7bmwsdsdngb7eb6ku.streamlit.app/](https://diabetes-predict--webapp-pphat948.streamlit.app/))
 
 ## Dataset
 Dataset to train model is from Kaggle: Diabetes prediction dataset:
