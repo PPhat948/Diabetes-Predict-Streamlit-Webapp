@@ -84,26 +84,29 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.30, random
 
 with st.expander('Model'):
   input_model = st.selectbox('Select Model for Predict',{'Logistic Regression','KNN','Random Forest'})
-  st.write('Your model use ',input_model)
-  if(input_model == 'Logistic Regression'):
-     model = LogisticRegression()
-  elif(input_model == 'KNN'):
-    model = KNeighborsClassifier(n_neighbors=7)
-  else:
-    model = RandomForestClassifier(n_estimators=200,max_depth=10) 
-  model.fit(X_train,y_train)
-  predictions = model.predict(X_test)
-  predictions_input = model.predict(input_row)
+  def model():
+    st.write('Your model use ',input_model)
+    if(input_model == 'Logistic Regression'):
+       model = LogisticRegression()
+    elif(input_model == 'KNN'):
+      model = KNeighborsClassifier(n_neighbors=7)
+    else:
+      model = RandomForestClassifier(n_estimators=200,max_depth=10) 
+    model.fit(X_train,y_train)
+    predictions = model.predict(X_test)
+    predictions_input = model.predict(input_row)
   
-  if(predictions_input <= 0.4):
-    st.success('You have low risk of diabetes!')
-  else:
-    st.warning('You have risk of diabetes please see to doctor!')
-  score = model.score(X_train,y_train)
-  st.write('Model Score:', score)
-  st.write('Confusion Matrix')
-  confs = confusion_matrix(y_test,predictions)
-  st.dataframe(confs)
+    if(predictions_input <= 0.4):
+      st.success('You have low risk of diabetes!')
+    else:
+      st.warning('You have risk of diabetes please see to doctor!')
+    score = model.score(X_train,y_train)
+    st.write('Model Score:', score)
+  if = st.button('Predict',type='primary')
+    model()
+    #st.write('Confusion Matrix')
+    #confs = confusion_matrix(y_test,predictions)
+    #st.dataframe(confs)
 
 
   
