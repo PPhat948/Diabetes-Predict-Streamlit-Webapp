@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import time
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.preprocessing import StandardScaler
@@ -9,6 +10,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
+
 st.title('Machine Learning App: Diabetes Predict')
 st.info('Hello')
 
@@ -103,6 +105,14 @@ with st.expander('Model'):
     score = model.score(X_train,y_train)
     st.write('Model Score:', score)
   if st.button('Predict',type='primary'):
+    progress_text = "Operation in progress. Please wait."
+    my_bar = st.progress(0, text=progress_text)
+
+    for percent_complete in range(100):
+      time.sleep(0.01)
+      my_bar.progress(percent_complete + 1, text=progress_text)
+      time.sleep(1)
+      my_bar.empty()
     model()
     #st.write('Confusion Matrix')
     #confs = confusion_matrix(y_test,predictions)
