@@ -94,14 +94,11 @@ with st.expander('Model'):
   model.fit(X_train,y_train)
   predictions = model.predict(X_test)
   predictions_input = model.predict(input_row)
-  predictions_proba = model.predict_proba(input_row)
   
-  if(predictions_proba[1] <= 0.4):
+  if(predictions_input <= 0.4):
     st.success('You have low risk of diabetes!')
-  elif(predictions_proba[1] <= 0.7):
-    st.warning('You have risk of diabetes please see to doctor!')
   else:
-    st.error('You have high risk of diabetes please see to doctor!')
+    st.warning('You have risk of diabetes please see to doctor!')
   score = model.score(X_train,y_train)
   st.write('Model Score:', score)
   st.write('Confusion Matrix')
