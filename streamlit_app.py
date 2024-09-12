@@ -102,7 +102,7 @@ with st.expander('Model'):
       st.warning('You have risk of diabetes please see to doctor!')
     score = model.score(X_train,y_train)
     st.write('Model Score:', score)
-  if = st.button('Predict',type='primary')
+  if st.button('Predict',type='primary'):
     model()
     #st.write('Confusion Matrix')
     #confs = confusion_matrix(y_test,predictions)
