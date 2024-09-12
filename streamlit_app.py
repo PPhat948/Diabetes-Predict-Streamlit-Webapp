@@ -81,7 +81,7 @@ def train_and_predict(X_train, y_train, X_test, y_test, input_data, model_choice
     score = model.score(X_train, y_train)
     acc = accuracy_score(y_test,predictions)
     prec = precision_score(y_test,predictions)
-    return prob_input, score , acc , pred
+    return prob_input, score , acc , prec
 
 # Display prediction result 
 def display_results(prob_input):
